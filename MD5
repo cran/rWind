@@ -1,0 +1,8 @@
+60bf06bde27e30646228c50ba36a8fb6 *DESCRIPTION
+82cddba0c4026e5ab2d6934b88278302 *NAMESPACE
+e9c9ffcb68305a23fe5eb74809483d5e *R/wind_functions.R
+bbfbb59fdd856b9e5fe24caa5185ac4f *man/arrowDir.Rd
+72274fab0d1fa5095e56cb14c51ea1cc *man/wind.dl.Rd
+26888b887a0657949a8a292ca7e3453f *man/wind.fit.Rd
+e66d2804e4a7072abe4e5fbd6ed0f879 *man/wind.mean.Rd
+5b8432a4d7123e8f780d81f11166cf85 *man/wind2raster.Rd
