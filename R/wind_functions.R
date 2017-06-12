@@ -130,3 +130,208 @@ arrowDir <- function(W){
   aDir<-(360-W$dir) + 90
   return(aDir)
 }
+
+flow.dispersion<-function(dl,sl,type){
+
+  ###################################################################
+  # Cost computation following Muñoz et al., 2004; Felicísimo et al., 2008
+
+  cost.Felicisimo<- function(wind,celda,type="passive"){
+    dif=(abs(wind-celda))
+    if (dif > 180){
+      dif = 360 - dif
+    }
+    if (type=="passive"){
+      if (dif > 90){return(0)}
+      else{
+
+        if (dif==0){return(0.1)}
+        else {return(dif*2)}
+      }
+    }
+    else {
+      if (dif==0){return(0.1)}
+      else {return(dif*2)}
+    }
+  }
+
+  ###################################################################
+
+  directions <- c(315 ,0, 45, 270, 90, 225, 180,135 )
+
+  ###################################################################
+
+  tl <- transition(dl, transitionFunction=function(x) 0, directions=8)
+
+  ###################################################################
+
+  matrix_dir<-list()
+
+  north.west <- matrix(c( 1, NA, NA,
+                          NA, 0,  NA,
+                          NA, NA, NA), ncol=3, byrow=TRUE)
+  matrix_dir[[1]]<-north.west
+
+  north <- matrix(c(NA, 1,  NA,
+                    NA, 0,  NA,
+                    NA, NA, NA), ncol=3, byrow=TRUE)
+  matrix_dir[[2]]<-north
+
+  north.east <- matrix(c(NA, NA,  1,
+                         NA, 0,  NA,
+                         NA, NA, NA), ncol=3, byrow=TRUE)
+  matrix_dir[[3]]<-north.east
+
+  east <-  matrix(c(NA, NA, NA,
+                    NA, 0,   1,
+                    NA, NA, NA), ncol=3, byrow=TRUE)
+  matrix_dir[[4]]<-east
+
+  south.east <- matrix(c(NA, NA, NA,
+                         NA, 0,  NA,
+                         NA, NA,  1), ncol=3, byrow=TRUE)
+  matrix_dir[[5]]<-south.east
+
+  south <- matrix(c(NA, NA, NA,
+                    NA, 0,  NA,
+                    NA, 1,  NA), ncol=3, byrow=TRUE)
+  matrix_dir[[6]]<-south
+
+  south.west <- matrix(c(NA, NA, NA,
+                         NA, 0,  NA,
+                         1, NA, NA), ncol=3, byrow=TRUE)
+  matrix_dir[[7]]<-south.west
+
+  west <-  matrix(c(NA, NA, NA,
+                    1, 0,  NA,
+                    NA, NA, NA), ncol=3, byrow=TRUE)
+  matrix_dir[[8]]<-west
+
+  ###################################################################
+
+  adj_north<-list()
+
+  for (c in 1:ncell(dl)){
+    aa<-adjacent(dl, cells = 1, directions=matrix_dir[[2]], sorted=TRUE)
+    adj_north[[c]] <- adjacent(dl, cells = c, directions=matrix_dir[[2]], sorted=TRUE)
+  }
+
+  for (trow in 1:ncell(dl)){
+    if (is.na(adj_north[[trow]][1])==FALSE){
+      tl[adj_north[[trow]][1],adj_north[[trow]][2]]<-cost.Felicisimo(dl[adj_north[[trow]][1]],directions[2], type) / sl[adj_north[[trow]][1]]
+    }
+  }
+
+  ###################################################################
+
+  adj_south<-list()
+
+  for (c in 1:ncell(dl)){
+    aa<-adjacent(dl, cells = 1, directions=matrix_dir[[6]], sorted=TRUE)
+    adj_south[[c]] <- adjacent(dl, cells = c, directions=matrix_dir[[6]], sorted=TRUE)
+  }
+
+  for (trow in 1:ncell(dl)){
+    if (is.na(adj_south[[trow]][1])==FALSE){
+      tl[adj_south[[trow]][1],adj_south[[trow]][2]]<-cost.Felicisimo(dl[adj_south[[trow]][1]],directions[7], type) / sl[adj_south[[trow]][1]]
+    }
+  }
+
+  ###################################################################
+
+  adj_east<-list()
+
+  for (c in 1:ncell(dl)){
+    aa<-adjacent(dl, cells = 1, directions=matrix_dir[[4]], sorted=TRUE)
+    adj_east[[c]] <- adjacent(dl, cells = c, directions=matrix_dir[[4]], sorted=TRUE)
+  }
+
+  for (trow in 1:ncell(dl)){
+    if (is.na(adj_east[[trow]][1])==FALSE){
+      tl[adj_east[[trow]][1],adj_east[[trow]][2]]<-cost.Felicisimo(dl[adj_east[[trow]][1]],directions[5], type) / sl[adj_east[[trow]][1]]
+    }
+  }
+
+  ###################################################################
+
+  adj_west<-list()
+
+  for (c in 1:ncell(dl)){
+    aa<-adjacent(dl, cells = 1, directions=matrix_dir[[8]], sorted=TRUE)
+    adj_west[[c]] <- adjacent(dl, cells = c, directions=matrix_dir[[8]], sorted=TRUE)
+  }
+
+  for (trow in 1:ncell(dl)){
+    if (is.na(adj_west[[trow]][1])==FALSE){
+      tl[adj_west[[trow]][1],adj_west[[trow]][2]]<-cost.Felicisimo(dl[adj_west[[trow]][1]],directions[4], type) / sl[adj_west[[trow]][1]]
+    }
+  }
+
+  ###################################################################
+
+  adj_north.east<-list()
+
+  for (c in 1:ncell(dl)){
+    aa<-adjacent(dl, cells = 1, directions=matrix_dir[[3]], sorted=TRUE)
+    adj_north.east[[c]] <- adjacent(dl, cells = c, directions=matrix_dir[[3]], sorted=TRUE)
+  }
+
+  for (trow in 1:ncell(dl)){
+    if (is.na(adj_north.east[[trow]][1])==FALSE){
+      tl[adj_north.east[[trow]][1],adj_north.east[[trow]][2]]<-cost.Felicisimo(dl[adj_north.east[[trow]][1]],directions[3], type) / sl[adj_north.east[[trow]][1]]
+    }
+  }
+
+  ###################################################################
+
+  adj_north.west<-list()
+
+  for (c in 1:ncell(dl)){
+    aa<-adjacent(dl, cells = 1, directions=matrix_dir[[1]], sorted=TRUE)
+    adj_north.west[[c]] <- adjacent(dl, cells = c, directions=matrix_dir[[1]], sorted=TRUE)
+  }
+
+  for (trow in 1:ncell(dl)){
+    if (is.na(adj_north.west[[trow]][1])==FALSE){
+      tl[adj_north.west[[trow]][1],adj_north.west[[trow]][2]]<-cost.Felicisimo(dl[adj_north.west[[trow]][1]],directions[1], type) / sl[adj_north.west[[trow]][1]]
+    }
+  }
+
+  ###################################################################
+
+  adj_south.west<-list()
+
+  for (c in 1:ncell(dl)){
+    aa<-adjacent(dl, cells = 1, directions=matrix_dir[[7]], sorted=TRUE)
+    adj_south.west[[c]] <- adjacent(dl, cells = c, directions=matrix_dir[[7]], sorted=TRUE)
+  }
+
+  for (trow in 1:ncell(dl)){
+    if (is.na(adj_south.west[[trow]][1])==FALSE){
+      tl[adj_south.west[[trow]][1],adj_south.west[[trow]][2]]<-cost.Felicisimo(dl[adj_south.west[[trow]][1]],directions[6], type) / sl[adj_south.west[[trow]][1]]
+    }
+  }
+
+  ###################################################################
+
+  adj_south.east<-list()
+
+  for (c in 1:ncell(dl)){
+    aa<-adjacent(dl, cells = 1, directions=matrix_dir[[5]], sorted=TRUE)
+    adj_south.east[[c]] <- adjacent(dl, cells = c, directions=matrix_dir[[5]], sorted=TRUE)
+  }
+
+  for (trow in 1:ncell(dl)){
+    if (is.na(adj_south.east[[trow]][1])==FALSE){
+      tl[adj_south.east[[trow]][1],adj_south.east[[trow]][2]]<-cost.Felicisimo(dl[adj_south.east[[trow]][1]],directions[8], type) / sl[adj_south.east[[trow]][1]]
+    }
+  }
+
+  ###################################################################
+
+  transitionMatrix(tl)<-replace(transitionMatrix(tl), is.na(transitionMatrix(tl)), 0)
+  transitionMatrix(tl)<-Matrix(1/transitionMatrix(tl), sparse=TRUE)
+  transitionMatrix(tl)<-replace(transitionMatrix(tl), is.infinite(transitionMatrix(tl)), 0)
+
+  return(tl)
+}

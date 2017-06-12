@@ -2,8 +2,8 @@ Package: rWind
 Encoding: UTF-8
 Type: Package
 Title: Download, Edit and Transform Wind Data from GFS
-Version: 0.1.3
-Date: 2016-11-24
+Version: 0.2.0
+Date: 2017-06-13
 BugReports: http://allthiswasfield.blogspot.com.es/
 Author: Javier Fernández-López <jflopez@rjb.csic.es>
 Maintainer: Javier Fernández-López <jflopez@rjb.csic.es>
@@ -11,9 +11,9 @@ Description: Tools for downloading, editing and transforming wind data from Glob
 URL: http://allthiswasfield.blogspot.com.es/
 License: GPL (>= 3)
 LazyData: TRUE
-Imports: raster, shape
-Packaged: 2016-12-03 10:11:08 UTC; root
+Imports: raster, shape, gdistance, Matrix
+Packaged: 2017-06-12 23:04:20 UTC; root
 Depends: R (>= 2.10)
 NeedsCompilation: no
 Repository: CRAN
-Date/Publication: 2016-12-03 12:19:59
+Date/Publication: 2017-06-12 23:51:48 UTC
