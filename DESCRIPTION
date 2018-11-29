@@ -3,7 +3,7 @@ Encoding: UTF-8
 Type: Package
 Title: Download, Edit and Include Wind Data in Ecological and
         Evolutionary Analysis
-Version: 1.0.3
+Version: 1.0.4
 BugReports: https://github.com/jabiologo/rWind
 Authors@R: c(person("Javier", "Fernández-López", email="jflopez.bio@gmail.com", role = c("aut", "cre")), 
     person("Klaus", "Schliep", email="klaus.schliep@gmail.com", role = c("aut")))
@@ -15,11 +15,11 @@ LazyData: TRUE
 Imports: raster (>= 2.5-8), gdistance, Matrix, lubridate
 Suggests: testthat, rmarkdown, knitr
 VignetteBuilder: knitr
-Packaged: 2018-10-24 08:25:25 UTC; root
+Packaged: 2018-11-29 12:38:11 UTC; root
 Depends: R (>= 3.4)
 NeedsCompilation: no
 Repository: CRAN
-RoxygenNote: 6.1.0
+RoxygenNote: 6.1.1
 Author: Javier Fernández-López [aut, cre],
   Klaus Schliep [aut]
-Date/Publication: 2018-10-24 09:20:03 UTC
+Date/Publication: 2018-11-29 13:30:03 UTC
