@@ -1,4 +1,33 @@
+rWind v1.1.3 (Release date: 2019-07-24)
+==============
+
+o fixing details for CRAN submission
+
+rWind v1.1.2 (Release date: 2019-07-20)
+==============
+
+o fixed some documentary issues with the new functions
+
+o changed from "wind.direction" and "wind.speed" to "direction" and "speed"
+
+rWind v1.1.1 (Release date: 2018-12-20)
+==============
+
+o added a new function seaScud.dl() to download sea current data from SCUD
+
+o added a new internal function to manage SCUD data scud.fit_int()
+
+
+rWind v1.1.0 (Release date: 2018-12-17)
+==============
+
+o added a new function seaOscar.dl() to download sea current data from OSCAR
+
+o added a new internal function to manage OSCAR data oscar.fit_int()
+
+
 rWind v1.0.4 (Release date: 2018-11-09)
+==============
 
 o fixed bug in wind.dl_2 (wind.fit_int)
 
