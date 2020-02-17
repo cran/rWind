@@ -25,7 +25,7 @@ circ.mean <- function(deg){
 #' Model colection. Geospatial resolution is 0.5 degrees (approximately 50 km),
 #' and wind is calculated for Earth surface, at 10 m. More metadata
 #' information:
-#' http://oos.soest.hawaii.edu/erddap/info/NCEP_Global_Best/index.html
+#' https://pae-paha.pacioos.hawaii.edu/erddap/griddap/ncep_global.graph
 #'
 #' The output type is determined by type="csv" or type="read-data". If
 #' type="csv" is selected, the function creates a "wind_yyyy_mm_dd_tt.csv" file
@@ -58,7 +58,7 @@ circ.mean <- function(deg){
 #' @references
 #' http://www.digital-geography.com/cloud-gis-getting-weather-data/#.WDOWmbV1DCL
 #'
-#' http://oos.soest.hawaii.edu/erddap/griddap/NCEP_Global_Best.graph
+#' https://pae-paha.pacioos.hawaii.edu/erddap/griddap/ncep_global.graph
 #' @keywords ~gfs ~wind
 #' @examples
 #'
@@ -68,6 +68,7 @@ circ.mean <- function(deg){
 #' wind.dl(2015,2,12,0,-10,5,35,45)
 #'
 #' }
+#'
 #'
 #' @importFrom utils write.table read.csv download.file
 #' @importFrom lubridate ymd_h year month day hour
@@ -105,8 +106,8 @@ wind.dl <- function (yyyy,mm,dd,tt,lon1,lon2,lat1,lat2,
         }
 
         if (lon1 > 180 && lon2 <180){
-            url_west<- paste("http://oos.soest.hawaii.edu/erddap/griddap/NCEP_Global_Best.csv?ugrd10m[(",yyyy_c,"-",mm_c,"-",dd_c,"T",tt_c,":00:00Z)][(",lat1,"):(",lat2,")][(",lon1,"):(359.5)],vgrd10m[(",yyyy_c,"-",mm_c,"-",dd_c,"T",tt_c,":00:00Z)][(",lat1,"):(",lat2,")][(",lon1,"):(359.5)]&.draw=vectors&.vars=longitude|latitude|ugrd10m|vgrd10m&.color=0x000000",sep="")
-            url_east<- paste("http://oos.soest.hawaii.edu/erddap/griddap/NCEP_Global_Best.csv?ugrd10m[(",yyyy_c,"-",mm_c,"-",dd_c,"T",tt_c,":00:00Z)][(",lat1,"):(",lat2,")][(0.0):(",lon2,")],vgrd10m[(",yyyy_c,"-",mm_c,"-",dd_c,"T",tt_c,":00:00Z)][(",lat1,"):(",lat2,")][(0.0):(",lon2,")]&.draw=vectors&.vars=longitude|latitude|ugrd10m|vgrd10m&.color=0x000000",sep="")
+            url_west<- paste("https://pae-paha.pacioos.hawaii.edu/erddap/griddap/ncep_global.csv?ugrd10m[(",yyyy_c,"-",mm_c,"-",dd_c,"T",tt_c,":00:00Z)][(",lat1,"):(",lat2,")][(",lon1,"):(359.5)],vgrd10m[(",yyyy_c,"-",mm_c,"-",dd_c,"T",tt_c,":00:00Z)][(",lat1,"):(",lat2,")][(",lon1,"):(359.5)]&.draw=vectors&.vars=longitude|latitude|ugrd10m|vgrd10m&.color=0x000000",sep="")
+            url_east<- paste("https://pae-paha.pacioos.hawaii.edu/erddap/griddap/ncep_global.csv?ugrd10m[(",yyyy_c,"-",mm_c,"-",dd_c,"T",tt_c,":00:00Z)][(",lat1,"):(",lat2,")][(0.0):(",lon2,")],vgrd10m[(",yyyy_c,"-",mm_c,"-",dd_c,"T",tt_c,":00:00Z)][(",lat1,"):(",lat2,")][(0.0):(",lon2,")]&.draw=vectors&.vars=longitude|latitude|ugrd10m|vgrd10m&.color=0x000000",sep="")
             tmp<-rbind(read.csv(url_west, header=FALSE, skip=2, stringsAsFactors=FALSE),
                        read.csv(url_east, header=FALSE, skip=2, stringsAsFactors=FALSE))
             tmp <- wind.fit_int(tmp)
@@ -120,7 +121,7 @@ wind.dl <- function (yyyy,mm,dd,tt,lon1,lon2,lat1,lat2,
         }
 
         else {
-            url_dir<- paste("http://oos.soest.hawaii.edu/erddap/griddap/NCEP_Global_Best.csv?ugrd10m[(",yyyy_c,"-",mm_c,"-",dd_c,"T",tt_c,":00:00Z)][(",lat1,"):(",lat2,")][(",lon1,"):(",lon2,")],vgrd10m[(",yyyy_c,"-",mm_c,"-",dd_c,"T",tt_c,":00:00Z)][(",lat1,"):(",lat2,")][(",lon1,"):(",lon2,")]&.draw=vectors&.vars=longitude|latitude|ugrd10m|vgrd10m&.color=0x000000",sep="")
+            url_dir<- paste("https://pae-paha.pacioos.hawaii.edu/erddap/griddap/ncep_global.csv?ugrd10m[(",yyyy_c,"-",mm_c,"-",dd_c,"T",tt_c,":00:00Z)][(",lat1,"):(",lat2,")][(",lon1,"):(",lon2,")],vgrd10m[(",yyyy_c,"-",mm_c,"-",dd_c,"T",tt_c,":00:00Z)][(",lat1,"):(",lat2,")][(",lon1,"):(",lon2,")]&.draw=vectors&.vars=longitude|latitude|ugrd10m|vgrd10m&.color=0x000000",sep="")
             tmp <- read.csv(url_dir, header=FALSE, skip=2, stringsAsFactors=FALSE)
             tmp <- wind.fit_int(tmp)
             if (type == "csv"){
@@ -251,8 +252,8 @@ wind.dl_2 <- function(time, lon1, lon2, lat1, lat2, type="read-data", trace=1){
             }
 
             if (lon1 > 180 && lon2 <180){
-                url_west<- paste("http://oos.soest.hawaii.edu/erddap/griddap/NCEP_Global_Best.csv?ugrd10m[(",yyyy_c,"-",mm_c,"-",dd_c,"T",tt_c,":00:00Z)][(",lat1,"):(",lat2,")][(",lon1,"):(359.5)],vgrd10m[(",yyyy_c,"-",mm_c,"-",dd_c,"T",tt_c,":00:00Z)][(",lat1,"):(",lat2,")][(",lon1,"):(359.5)]&.draw=vectors&.vars=longitude|latitude|ugrd10m|vgrd10m&.color=0x000000",sep="")
-                url_east<- paste("http://oos.soest.hawaii.edu/erddap/griddap/NCEP_Global_Best.csv?ugrd10m[(",yyyy_c,"-",mm_c,"-",dd_c,"T",tt_c,":00:00Z)][(",lat1,"):(",lat2,")][(0.0):(",lon2,")],vgrd10m[(",yyyy_c,"-",mm_c,"-",dd_c,"T",tt_c,":00:00Z)][(",lat1,"):(",lat2,")][(0.0):(",lon2,")]&.draw=vectors&.vars=longitude|latitude|ugrd10m|vgrd10m&.color=0x000000",sep="")
+                url_west<- paste("https://pae-paha.pacioos.hawaii.edu/erddap/griddap/ncep_global.csv?ugrd10m[(",yyyy_c,"-",mm_c,"-",dd_c,"T",tt_c,":00:00Z)][(",lat1,"):(",lat2,")][(",lon1,"):(359.5)],vgrd10m[(",yyyy_c,"-",mm_c,"-",dd_c,"T",tt_c,":00:00Z)][(",lat1,"):(",lat2,")][(",lon1,"):(359.5)]&.draw=vectors&.vars=longitude|latitude|ugrd10m|vgrd10m&.color=0x000000",sep="")
+                url_east<- paste("https://pae-paha.pacioos.hawaii.edu/erddap/griddap/ncep_global.csv?ugrd10m[(",yyyy_c,"-",mm_c,"-",dd_c,"T",tt_c,":00:00Z)][(",lat1,"):(",lat2,")][(0.0):(",lon2,")],vgrd10m[(",yyyy_c,"-",mm_c,"-",dd_c,"T",tt_c,":00:00Z)][(",lat1,"):(",lat2,")][(0.0):(",lon2,")]&.draw=vectors&.vars=longitude|latitude|ugrd10m|vgrd10m&.color=0x000000",sep="")
 
                 tmp<-rbind(read.csv(url_west, header=FALSE, skip=2,
                                     stringsAsFactors=FALSE),
@@ -272,7 +273,7 @@ wind.dl_2 <- function(time, lon1, lon2, lat1, lat2, type="read-data", trace=1){
             }
 
             else {
-                url_dir<- paste("http://oos.soest.hawaii.edu/erddap/griddap/NCEP_Global_Best.csv?ugrd10m[(",yyyy_c,"-",mm_c,"-",dd_c,"T",tt_c,":00:00Z)][(",lat1,"):(",lat2,")][(",lon1,"):(",lon2,")],vgrd10m[(",yyyy_c,"-",mm_c,"-",dd_c,"T",tt_c,":00:00Z)][(",lat1,"):(",lat2,")][(",lon1,"):(",lon2,")]&.draw=vectors&.vars=longitude|latitude|ugrd10m|vgrd10m&.color=0x000000",sep="")
+                url_dir<- paste("https://pae-paha.pacioos.hawaii.edu/erddap/griddap/ncep_global.csv?ugrd10m[(",yyyy_c,"-",mm_c,"-",dd_c,"T",tt_c,":00:00Z)][(",lat1,"):(",lat2,")][(",lon1,"):(",lon2,")],vgrd10m[(",yyyy_c,"-",mm_c,"-",dd_c,"T",tt_c,":00:00Z)][(",lat1,"):(",lat2,")][(",lon1,"):(",lon2,")]&.draw=vectors&.vars=longitude|latitude|ugrd10m|vgrd10m&.color=0x000000",sep="")
                 tmp <- read.csv(url_dir, header=FALSE, skip=2,
                                 colClasses = c("POSIXct", "double", "double", "double", "double"))
                 tmp <- wind.fit_int(tmp)
@@ -526,18 +527,30 @@ arrowDir <- function(W){
 #' @rdname flow.dispersion
 #' @export
 cost.FMGS <- function(wind.direction, wind.speed, target, type="active"){
-    dif <- (abs(wind.direction - target))
-    dif[dif > 180] <- 360 - dif[dif > 180]
-    if (type=="passive"){
-        dif[dif >= 90] <- Inf # check
-        dif[dif < 90] <- 2 * dif[dif < 90]
-        dif[dif==0] <- 0.1
-    }
-    else {
-        dif[dif < 90] <- 2 * dif[dif < 90]
-        dif[dif==0] <- 0.1
-    }
-    dif / wind.speed
+  dif <- (abs(wind.direction - target))
+  # If dif > 180 and is not NA
+  dif[dif>180 & !is.na(dif)]<- 360 - dif[dif>180 & !is.na(dif)] #Modified from the original function
+  if (type=="passive"){
+    # In "passive" type, if dif > 90, movement is not allowed
+    dif[dif >= 90 & !is.na(dif)] <- Inf # check
+    # For sea currents, dif could be NA is there are lands around
+    dif[is.na(dif)] <- Inf #Modified from the original function
+    # Here we apply the formula in Felicísimo et al. 2008
+    dif[dif < 90] <- 2 * dif[dif < 90]
+    dif[dif==0] <- 0.1
+  }
+  else {
+    # For sea currents, dif could be NA is there are lands around
+    dif[is.na(dif)] <- Inf
+    # For "active" type movements against flow are allowed, so simply we
+    # multiply by 2 the dif, following Felicísimo et al., 2008
+    dif[!is.na(dif)] <- 2 * dif[!is.na(dif)]
+    dif[dif==0] <- 0.1
+  }
+
+  wind.speed[is.na(wind.speed)] <- 0
+
+  dif / wind.speed
 }
 
 
@@ -572,7 +585,7 @@ cost.FMGS <- function(wind.direction, wind.speed, target, type="active"){
 #' @note Note that for large data sets, it could take a while. For large study
 #' areas is strongly adviced perform the analysis in a remote computer or a
 #' cluster.
-#' @author Javier Fernández-López; Klaus Schliep
+#' @author Javier Fernández-López; Klaus Schliep; Yurena Arjona
 #' @seealso \code{\link{wind.dl}}, \code{\link{wind2raster}}
 #' @references
 #'
@@ -738,7 +751,7 @@ flow.dispersion_int <- function(stack, fun=cost.FMGS, output="transitionLayer",
 #' @note Note that for large data sets, it could take a while. For large study
 #' areas is strongly adviced perform the analysis in a remote computer or a
 #' cluster.
-#' @author Javier Fernández-López; Klaus Schliep
+#' @author Javier Fernández-López; Klaus Schliep; Yurena Arjona
 #' @seealso \code{\link{wind.dl}}, \code{\link{wind2raster}}
 #' @references
 #'
@@ -891,7 +904,7 @@ oscar.fit_int <- function (tmpx) {
 #' (https://coastwatch.pfeg.noaa.gov/erddap/info/jplOscar_LonPM180/index.html).
 #' Geospatial resolution is 0.33 degrees and sea currents are calculated for
 #' 15 m depth. CAUTION: OSCAR database has no data between 0 and 20 longitude
-#' degrees. You can use SCUD databse instead \code{\link{seaScud.dl}}
+#' degrees. You can use SCUD databse instead (coming soon...)
 #'
 #' The output type is determined by type="csv" or type="read-data". If
 #' type="csv" is selected, the function creates a "sea_yyyy_mm_dd.csv" file
@@ -913,7 +926,7 @@ oscar.fit_int <- function (tmpx) {
 #' vector  components and sea current direction and speed for each coordenate
 #' in the study area defined by lon1/lon2 and lat1/lat2.
 #' @author Javier Fernández-López (jflopez@@rjb.csic.es)
-#' @seealso \code{\link{wind.dl_2}}, \code{\link{wind2raster}}, \code{\link{seaScud.dl}}
+#' @seealso \code{\link{wind.dl_2}}, \code{\link{wind2raster}}
 #' @references
 #' http://www.digital-geography.com/cloud-gis-getting-weather-data/#.WDOWmbV1DCL
 #'
@@ -980,130 +993,4 @@ seaOscar.dl <- function(yyyy, mm, dd, lon1, lon2, lat1, lat2, type = "read-data"
   return(tmp)
 }
 
-
-###############################################################################
-# Some new and experimental functions to download Surface CUrrents from a
-# Diagnostic model (SCUD): Pacific database.
-# https://bluehub.jrc.ec.europa.eu/erddap/info/hawaii_0958_63c0_45d2/index.html
-# https://bluehub.jrc.ec.europa.eu/erddap/griddap/hawaii_0958_63c0_45d2.graph
-# This is a beta version, please use it carefully
-
-scud.fit_int <- function (tmpx) {
-  tmpx[,3] <- tmpx[,3] %% 360
-  tmpx[tmpx[,3]>=180,3] <- tmpx[tmpx[,3]>=180,3] - 360
-
-  #tmpx <- cbind(tmpx[,1],tmpx[,3:6])
-  ###### DIRECTION
-  direction <- atan2(tmpx[,4], tmpx[,5])
-  direction <- rad2deg(direction)
-  dir_filter <- direction[!is.nan(direction)]
-  dir_filter[dir_filter < 0] <- 360 + dir_filter[dir_filter < 0] # COMPROBAR A MANOOOOO!!!!!!!!!!!
-  direction[!is.nan(direction)] <- dir_filter
-  ###### SPEED
-  speed <- sqrt( (tmpx[,4] * tmpx[,4]) + (tmpx[,5] * tmpx[,5]))
-  ######
-  names(tmpx)<- c("time", "lat","lon", "u", "v")
-  res <- cbind(tmpx, dir=direction, speed=speed)
-  res <- res[with(res, order(-lat)), ]
-  res[,1] <- ymd_hms(res[,1], truncated = 3)
-  return(res)
-}
-
-
-#' SCUD Sea currents data download
-#'
-#' seaScud.dl downloads sea current data from the Surface CUrrents from a
-#' Diagnostic model (SCUD): Pacific
-#' (https://bluehub.jrc.ec.europa.eu/erddap/info/hawaii_0958_63c0_45d2/index.html).
-#' Geospatial resolution is 0.25 degrees. Data availability from 2012-03-17 to
-#' current.
-#'
-#' The output type is determined by type="csv" or type="read-data". If
-#' type="csv" is selected, the function creates a "sea_yyyy_mm_dd.csv" file
-#' that is downloaded at the work directory. If type="read-data" is selected,
-#' an R object (data.frame) is created.
-#'
-#' @param yyyy Selected year.
-#' @param mm Selected month.
-#' @param dd Selected day.
-#' @param lon1 Western longitude
-#' @param lon2 Eastern longitude
-#' @param lat1 Southern latitude
-#' @param lat2 Northern latitude
-#' @param type Output type. "read-data" is selected by default, creating an R
-#' object. If you choose "csv", seaOscar.dl create a a CSV file in your working
-#' directory named "seaSCUD_yyyy_mm_dd.csv".
-#' @param trace if trace = 1 (by default) track downloaded files
-#' @return "rWind" and "data.frame" class object or .csv file with U and V
-#' vector  components and sea current direction and speed for each coordenate
-#' in the study area defined by lon1/lon2 and lat1/lat2.
-#' @author Javier Fernández-López (jflopez@@rjb.csic.es)
-#' @seealso \code{\link{seaOscar.dl}}, \code{\link{wind2raster}}
-#' @references
-#' http://www.digital-geography.com/cloud-gis-getting-weather-data/#.WDOWmbV1DCL
-#'
-#' https://bluehub.jrc.ec.europa.eu/erddap/info/hawaii_0958_63c0_45d2/index.html
-#' @keywords ~currents ~sea
-#' @examples
-#'
-#' # Download sea currents for Galapagos Islands
-#' \dontrun{
-#'
-#' seaScud.dl(2016, 11, 1, -94, -88, -3, 2)
-#'
-#' }
-
-#' @importFrom utils write.table read.csv download.file
-#' @importFrom lubridate ymd year month day hour
-#' @rdname seaScud.dl
-#' @export seaScud.dl
-
-seaScud.dl <- function(yyyy, mm, dd, lon1, lon2, lat1, lat2, type="read-data", trace=1){
-
-  type <- match.arg(type, c("read-data", "csv"))
-
-  mm<-sprintf("%02d", mm)
-  dd<-sprintf("%02d", dd)
-
-  # Create a sequence with all dates available between selected dates
-  dt <- ymd(paste(yyyy,mm,dd, sep="-"))
-
-  yyyy_c <- year(dt)
-  mm_c <- sprintf("%02d",month(dt))
-  dd_c <- sprintf("%02d",day(dt))
-
-  testDate <- paste(yyyy_c,"-",mm_c,"-",dd_c, sep="")
-  print(testDate)
-  if(trace)print(paste( ymd(paste(yyyy_c,mm_c,dd_c, sep="-")),
-                        "downloading...", sep= " "))
-
-  tryCatch({
-    as.Date(testDate)
-    if (lon1 < 0){
-      lon1<-360-(abs(lon1))
-    }
-    if (lon2 < 0){
-      lon2<-360-(abs(lon2))
-    }
-    #browser()
-    url_dir<- paste("https://bluehub.jrc.ec.europa.eu/erddap/griddap/hawaii_0958_63c0_45d2.csv?u[(",yyyy_c,"-",mm_c,"-",dd_c,"T00:00:00Z)][(",lat1,"):(",lat2,")][(",lon1,"):(",lon2,")],v[(",yyyy_c,"-",mm_c,"-",dd_c,"T00:00:00Z)][(",lat1,"):(",lat2,")][(",lon1,"):(",lon2,")]&.draw=vectors&.vars=longitude|latitude|u|v&.color=0x000000", sep="")
-    #browser()
-    tmp <- read.csv(url_dir, header=FALSE, skip=2, stringsAsFactors=FALSE)
-    #browser()
-    tmp <- scud.fit_int(tmp)
-    if (type == "csv"){
-      fname <- paste("seaSCUD_",yyyy_c,"_",mm_c,"_",dd_c,".csv", sep="")
-      write.table(tmp, fname, sep = ",", row.names = FALSE,
-                  col.names = TRUE, quote = FALSE)
-    }
-
-  },
-  error=function(e){cat("ERROR: database not found. Please, check server
-                      connection, date or geographical ranges \n")},
-  warning=function(w){cat("ERROR: database not found. Please, check server
-                        connection, date or geographical ranges  \n")}
-  )
-  class(tmp) <-  c("rWind", "data.frame")
-  return(tmp)
-}
 
