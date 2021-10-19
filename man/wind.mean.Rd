@@ -18,8 +18,8 @@ series dataset of winds of the same region.
 Summaries of time series are not trivial to compute. We compute the
 arithmetic mean for the wind speed.
 The direction as the circular mean, see
-\url{https://en.wikipedia.org/wiki/Mean_of_circular_quantities}
-for more details. The U and V componenats are afterwards transformed from
+\url{https://en.wikipedia.org/wiki/Circular_mean}
+for more details. The U and V components are afterwards transformed from
 these values.
 }
 \note{
@@ -27,9 +27,7 @@ For large time series, it could take a while.
 }
 \examples{
 data(wind.series)
-wind_average<- wind.mean(wind.series)
-
-
+wind_average <- wind.mean(wind.series)
 }
 \references{
 https://en.wikipedia.org/wiki/Cross_product
@@ -38,7 +36,7 @@ https://en.wikipedia.org/wiki/Cross_product
 \code{\link{wind.dl}}
 }
 \author{
-Javier Fernández-López (jflopez@rjb.csic.es)
+Javier Fernández-López (jflopez.bio@gmail.com)
 }
 \keyword{~average}
 \keyword{~mean}

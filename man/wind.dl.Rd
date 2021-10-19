@@ -5,8 +5,18 @@
 \alias{read.rWind}
 \title{Wind-data download}
 \usage{
-wind.dl(yyyy, mm, dd, tt, lon1, lon2, lat1, lat2, type = "read-data",
-  trace = 1)
+wind.dl(
+  yyyy,
+  mm,
+  dd,
+  tt,
+  lon1,
+  lon2,
+  lat1,
+  lat2,
+  type = "read-data",
+  trace = 1
+)
 
 read.rWind(file)
 }
@@ -39,15 +49,15 @@ directory named "wind_yyyy_mm_dd_tt.csv".}
 }
 \value{
 "rWind" and "data.frame" class object or .csv file with U and V
-vector  components and wind direction and speed for each coordenate
+vector  components and wind direction and speed for each coordinate
 in the study area defined by lon1/lon2 and lat1/lat2.
 }
 \description{
 wind.dl downloads wind data from the Global Forecast System (GFS) of the
 USA's National Weather Service (NWS)
-(https://www.ncdc.noaa.gov/data-access/model-data/model-datasets/global-forcast-system-gfs).
+(https://www.ncei.noaa.gov/products/weather-climate-models/global-forecast).
 Wind data are taken from NOAA/NCEP Global Forecast System (GFS) Atmospheric
-Model colection. Geospatial resolution is 0.5 degrees (approximately 50 km),
+Model collection. Geospatial resolution is 0.5 degrees (approximately 50 km),
 and wind is calculated for Earth surface, at 10 m. More metadata
 information:
 https://pae-paha.pacioos.hawaii.edu/erddap/griddap/ncep_global.graph
@@ -59,8 +69,8 @@ that is downloaded at the work directory. If type="read-data" is selected,
 an R object (data.frame) is created.
 }
 \note{
-Longitude coordenates are provided by GFS dataset in 0/360 notation
-and transformed internaly into -180/180. Wind "dir" denotes where the
+Longitude coordinate are provided by GFS dataset in 0/360 notation
+and transformed internally into -180/180. Wind "dir" denotes where the
 wind is going (toward), not from where is coming.
 }
 \examples{
@@ -68,10 +78,8 @@ wind is going (toward), not from where is coming.
 # Download wind for Iberian Peninsula region at 2015, February 12, 00:00
 \dontrun{
 
-wind.dl(2015,2,12,0,-10,5,35,45)
-
+wind.dl(2015, 2, 12, 0, -10, 5, 35, 45)
 }
-
 
 }
 \references{
@@ -83,7 +91,7 @@ https://pae-paha.pacioos.hawaii.edu/erddap/griddap/ncep_global.graph
 \code{\link{wind.dl_2}}, \code{\link{wind2raster}}
 }
 \author{
-Javier Fernández-López (jflopez@rjb.csic.es)
+Javier Fernández-López (jflopez.bio@gmail.com)
 }
 \keyword{~gfs}
 \keyword{~wind}

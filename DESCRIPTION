@@ -3,25 +3,25 @@ Encoding: UTF-8
 Type: Package
 Title: Download, Edit and Include Wind and Sea Currents Data in
         Ecological and Evolutionary Analysis
-Version: 1.1.5
-BugReports: https://github.com/jabiologo/rWind
+Version: 1.1.7
+BugReports: https://github.com/jabiologo/rWind/issues
 Authors@R: c(person("Javier", "Fernández-López", email="jflopez.bio@gmail.com", role = c("aut", "cre")), 
     person("Klaus", "Schliep", email="klaus.schliep@gmail.com", role = c("aut")),
     person("Yurena", "Arjona", email="yurenaaf@gmail.com", role = c("aut")))
 Maintainer: Javier Fernández-López <jflopez.bio@gmail.com>
-Description: Tools for download and manage surface wind and sea currents data from the Global Forecasting System <https://www.ncdc.noaa.gov/data-access/model-data/model-datasets/global-forcast-system-gfs> and to compute connectivity between locations.
+Description: Tools for download and manage surface wind and sea currents data from the Global Forecasting System <https://www.ncei.noaa.gov/products/weather-climate-models/global-forecast> and to compute connectivity between locations.
 URL: http://allthiswasfield.blogspot.com.es/
 License: GPL (>= 3)
-LazyData: TRUE
+LazyData: true
 Imports: raster (>= 2.5-8), gdistance, Matrix, lubridate
 Suggests: testthat, rmarkdown, knitr
 VignetteBuilder: knitr
-Packaged: 2020-02-17 16:09:00 UTC; root
 Depends: R (>= 3.4)
+RoxygenNote: 7.1.1
 NeedsCompilation: no
-Repository: CRAN
-RoxygenNote: 6.1.1
+Packaged: 2021-10-18 21:14:35 UTC; javifl
 Author: Javier Fernández-López [aut, cre],
   Klaus Schliep [aut],
   Yurena Arjona [aut]
-Date/Publication: 2020-02-17 18:50:11 UTC
+Repository: CRAN
+Date/Publication: 2021-10-19 16:00:02 UTC

@@ -16,7 +16,7 @@ and speed.
 \description{
 wind2raster crates a raster stack (gridded) with 2 layers: wind speed and
 wind direction for an object of \code{rWind}.
-Latitude and logitude values are used to locate raster file and to create
+Latitude and longitude values are used to locate raster file and to create
 raster using rasterFromXYZ function from raster package. If the input file is
 a list of wind data created by wind.dl, a list of raster stacks will be
 returned
@@ -33,13 +33,12 @@ data(wind.data)
 # layers
 
 wind2raster(wind.data)
-
 }
 \seealso{
 \code{\link{wind.dl}}
 }
 \author{
-Javier Fernández-López (jflopez@rjb.csic.es)
+Javier Fernández-López (jflopez.bio@gmail.com)
 }
 \keyword{~gfs}
 \keyword{~wind}

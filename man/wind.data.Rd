@@ -4,7 +4,8 @@
 \name{wind.data}
 \alias{wind.data}
 \title{Wind data example}
-\format{A list with one data.frame with 651 observations on the following 7
+\format{
+A list with one data.frame with 651 observations on the following 7
 variables:
 \describe{ \item{list("time (UTC)")}{a numeric with selected time of wind
 data } \item{list("latitude (degrees_north)")}{a numeric with latitude values
@@ -12,13 +13,14 @@ data } \item{list("latitude (degrees_north)")}{a numeric with latitude values
 \item{list("ugrd10m (m s-1)")}{a numeric with U component of wind data }
 \item{list("vgrd10m (m s-1)")}{a numeric with V component of wind data }
 \item{list("dir")}{a numeric with direction of wind data }
-\item{list("speed")}{a numeric with speed of wind data } }}
+\item{list("speed")}{a numeric with speed of wind data } }
+}
 \source{
 http://allthiswasfield.blogspot.com.es/2016/12/rwind-r-package-released.html
 }
 \description{
 This is an example of wind data obtained with wind.dl function for the
-Iberian Peninsula coordenates on 12/February/2015 at 00:00 (UTC)
+Iberian Peninsula coordinates on 12/February/2015 at 00:00 (UTC)
 }
 \details{
 This data set is the result of:
@@ -30,7 +32,6 @@ This data set is the result of:
 data(wind.data)
 str(wind.data)
 head(wind.data[[1]])
-
 }
 \references{
 http://oos.soest.hawaii.edu/erddap/info/NCEP_Global_Best/index.html

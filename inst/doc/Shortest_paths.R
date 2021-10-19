@@ -1,11 +1,11 @@
-## ---- echo=FALSE---------------------------------------------------------
+## ---- echo=FALSE--------------------------------------------------------------
 suppressPackageStartupMessages(library(rWind))
 suppressPackageStartupMessages(library(raster))
 suppressPackageStartupMessages(library(gdistance))
 suppressPackageStartupMessages(library(lubridate))
 foo <- packageDescription("rWind")
 
-## ---- eval=FALSE---------------------------------------------------------
+## ---- eval=FALSE--------------------------------------------------------------
 #  # use install.packages() if some is not installed
 #  # and you can install the latest development version using the command
 #  # devtools::install_github("jabiologo/rWind")
@@ -13,25 +13,25 @@ foo <- packageDescription("rWind")
 #  library(raster)
 #  library(gdistance)
 
-## ---- echo=FALSE---------------------------------------------------------
+## ---- echo=FALSE--------------------------------------------------------------
 w <- readRDS("w.rds")
 
-## ---- eval=FALSE---------------------------------------------------------
+## ---- eval=FALSE--------------------------------------------------------------
 #  w <- wind.dl(2015, 2, 12, 12, -7, -4, 34.5, 37.5)
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 wind_layer <- wind2raster(w)
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 Conductance<-flow.dispersion(wind_layer)
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 AtoB<- shortestPath(Conductance, 
                     c(-5.5, 37), c(-5.5, 35), output="SpatialLines")
 BtoA<- shortestPath(Conductance, 
                     c(-5.5, 35), c(-5.5, 37), output="SpatialLines")
 
-## ---- fig.width = 7, fig.height = 6.5, eval=FALSE------------------------
+## ---- fig.width = 7, fig.height = 6.5, eval=FALSE-----------------------------
 #  library(fields)
 #  library(shape)
 #  library(rworldmap)

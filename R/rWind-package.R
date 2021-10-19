@@ -1,9 +1,9 @@
 
 
-#' Download, edit and include wind data in ecological and evolutionary analysis
+#' Download, edit and include wind and sea currents data in ecological and evolutionary analysis
 #'
-#' rWind contain tools for downloading, editing and transforming wind data from
-#' Global Forecast System (GFS). It also allows to use wind data to compute the
+#' rWind contain tools for downloading, editing and transforming wind and sea currents data from
+#' Global Forecast System (GFS) and Ocean Surface Current Analyses Real-time (OSCAR). It also allows to use wind and sea currents data to compute the
 #' minimum cost path from wind speed and direction to perform
 #' connectivity analysis.
 #'
@@ -27,7 +27,7 @@ NULL
 #' Wind data example
 #'
 #' This is an example of wind data obtained with wind.dl function for the
-#' Iberian Peninsula coordenates on 12/February/2015 at 00:00 (UTC)
+#' Iberian Peninsula coordinates on 12/February/2015 at 00:00 (UTC)
 #'
 #'
 #' This data set is the result of:
@@ -56,7 +56,6 @@ NULL
 #' data(wind.data)
 #' str(wind.data)
 #' head(wind.data[[1]])
-#'
 NULL
 
 
@@ -95,9 +94,4 @@ NULL
 #'
 #' data(wind.series)
 #' str(tidy(wind.series))
-#'
-#'
 NULL
-
-
-

@@ -1,3 +1,19 @@
+rWind v1.1.7 (Release date: 2021-10-18)
+==============
+
+o move from travisCI to github actions
+
+o some fix in arrowDir documentation
+
+o reviewing all the URLs
+
+rWind v1.1.6 (Release date: 2021-02-07)
+==============
+
+o email address for maintainer changed
+
+o uv2ds manual page chaged
+
 rWind v1.1.5 (Release date: 2019-07-31)
 ==============
 

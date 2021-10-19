@@ -4,8 +4,7 @@
 \alias{flow.dispersion_int}
 \title{Compute flow-based cost or conductance}
 \usage{
-flow.dispersion_int(stack, fun = cost.FMGS, output = "transitionLayer",
-  ...)
+flow.dispersion_int(stack, fun = cost.FMGS, output = "transitionLayer", ...)
 }
 \arguments{
 \item{stack}{RasterStack object with layers obtained from wind2raster
@@ -14,7 +13,7 @@ function ("rWind" package) with direction and speed flow values.}
 \item{fun}{A function to compute the cost to move between cells. The default
 is \code{cost.FMGS} from Felicísimo et al. (2008), see details.}
 
-\item{output}{This argument allows to select diferent kinds of output. "raw"
+\item{output}{This argument allows to select different kinds of output. "raw"
 mode creates a matrix (class "dgCMatrix") with transition costs between all
 cells in the raster. "transitionLayer" creates a TransitionLayer object with
 conductance values to be used with "gdistance" package.}
@@ -23,10 +22,10 @@ conductance values to be used with "gdistance" package.}
 }
 \value{
 In "transitionLayer" output, the function returns conductance values
-(1/cost)to move betwen all cells in a raster having into account flow speed
+(1/cost)to move between all cells in a raster having into account flow speed
 and direction obtained from wind.fit function("rWind" package). As wind or
 sea currents implies directionality, flow.dispersion produces an anisotropic
-conductance matrix (asimetric). Conductance values are used later to built a
+conductance matrix (asymmetric). Conductance values are used later to built a
 TransitionLayer object from "gdistance" package.
 
 In "raw" output, flow.dispersion creates a sparse Matrix with cost values.
@@ -39,20 +38,19 @@ or wind currents. It implements the formula described in Felícisimo et al.
 \details{
 Cost=(1/Speed)*(HorizontalFactor)
 
-being HorizontalFactor a "function that incrementaly penalized angular
+being HorizontalFactor a "function that incrementally penalized angular
 deviations from the wind direction" (Felicísimo et al. 2008).
 }
 \note{
 Note that for large data sets, it could take a while. For large study
-areas is strongly adviced perform the analysis in a remote computer or a
+areas is strongly advised perform the analysis in a remote computer or a
 cluster.
 }
 \examples{
 
 data(wind.data)
 wind <- wind2raster(wind.data)
-Conductance <- flow.dispersion(wind, type="passive")
-
+Conductance <- flow.dispersion(wind, type = "passive")
 \dontrun{
 require(gdistance)
 transitionMatrix(Conductance)
